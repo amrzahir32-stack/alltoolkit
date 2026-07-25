@@ -1,0 +1,80 @@
+import { extraTools } from "./extraTools";
+export type Tool = {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+  category: "Security" | "Text" | "Developer" | "Calculators" | "Images" | "PDF" | "Student" | "Productivity";
+  featured: boolean;
+  icon: "activity" | "arrowleftright" | "binary" | "braces" | "cake" | "calculator" | "calendardays" | "case" | "clock3" | "codexml" | "dices" | "eraser" | "fingerprint" | "hash" | "keyround" | "landmark" | "link" | "link2" | "listfilter" | "palette" | "pilcrow" | "qr" | "regex" | "replace" | "shield" | "shieldcheck" | "table2" | "text" | "trendingup" | "files" | "scissors" | "rotatecw" | "imageplus" | "graduationcap" | "target" | "percent" | "timer" | "layers" | "bookopen" | "image" | "wand";
+};
+
+export const tools: Tool[] = [
+  { id: "password-generator", title: "Password Generator", description: "Create strong, customizable passwords using secure browser randomness.", href: "/tools/password-generator", category: "Security", featured: true, icon: "shield" },
+  { id: "qr-generator", title: "QR Code Generator", description: "Turn links or text into a downloadable QR code in seconds.", href: "/tools/qr-generator", category: "Images", featured: true, icon: "qr" },
+  { id: "word-counter", title: "Word Counter", description: "Count words, characters, sentences, paragraphs and reading time.", href: "/tools/word-counter", category: "Text", featured: true, icon: "text" },
+  { id: "json-formatter", title: "JSON Formatter", description: "Format, validate and copy JSON without sending data anywhere.", href: "/tools/json-formatter", category: "Developer", featured: true, icon: "braces" },
+  { id: "uuid-generator", title: "UUID Generator", description: "Generate one or many RFC 4122 version 4 identifiers.", href: "/tools/uuid-generator", category: "Developer", featured: true, icon: "fingerprint" },
+  { id: "percentage-calculator", title: "Percentage Calculator", description: "Solve common percentage questions with instant results.", href: "/tools/percentage-calculator", category: "Calculators", featured: true, icon: "calculator" },
+  { id: "base64", title: "Base64 Encoder & Decoder", description: "Encode plain text to Base64 or decode Base64 back to text.", href: "/tools/base64", category: "Developer", featured: false, icon: "binary" },
+  { id: "case-converter", title: "Case Converter", description: "Convert text to uppercase, lowercase, title case and more.", href: "/tools/case-converter", category: "Text", featured: false, icon: "case" },
+  { id: "hash-generator", title: "Hash Generator", description: "Generate SHA-256, SHA-384 or SHA-512 hashes locally.", href: "/tools/hash-generator", category: "Security", featured: false, icon: "hash" },
+  { id: "url-encoder", title: "URL Encoder & Decoder", description: "Encode or decode URLs and query text safely.", href: "/tools/url-encoder", category: "Developer", featured: false, icon: "link" },
+  { id: "html-entities", title: "HTML Entity Encoder", description: "Encode or decode HTML entities in your browser.", href: "/tools/html-entities", category: "Developer", featured: false, icon: "codexml" },
+  { id: "jwt-decoder", title: "JWT Decoder", description: "Inspect JWT headers and payloads without verifying or uploading them.", href: "/tools/jwt-decoder", category: "Developer", featured: false, icon: "keyround" },
+  { id: "regex-tester", title: "Regex Tester", description: "Test regular expressions and inspect every match instantly.", href: "/tools/regex-tester", category: "Developer", featured: false, icon: "regex" },
+  { id: "csv-json-converter", title: "CSV ↔ JSON Converter", description: "Convert CSV files to JSON and JSON arrays back to CSV.", href: "/tools/csv-json-converter", category: "Developer", featured: false, icon: "table2" },
+  { id: "timestamp-converter", title: "Unix Timestamp Converter", description: "Convert Unix timestamps to readable dates and back.", href: "/tools/timestamp-converter", category: "Developer", featured: false, icon: "clock3" },
+  { id: "slug-generator", title: "Slug Generator", description: "Turn titles into clean, URL-friendly slugs.", href: "/tools/slug-generator", category: "Text", featured: false, icon: "link2" },
+  { id: "text-cleaner", title: "Text Cleaner", description: "Fix spacing, empty lines, duplicates and punctuation.", href: "/tools/text-cleaner", category: "Text", featured: false, icon: "eraser" },
+  { id: "line-tools", title: "Sort & Deduplicate Lines", description: "Sort, reverse and remove duplicate lines.", href: "/tools/line-tools", category: "Text", featured: false, icon: "listfilter" },
+  { id: "find-replace", title: "Find & Replace", description: "Replace words or phrases with a live preview.", href: "/tools/find-replace", category: "Text", featured: false, icon: "replace" },
+  { id: "lorem-ipsum", title: "Lorem Ipsum Generator", description: "Generate placeholder paragraphs for layouts and mockups.", href: "/tools/lorem-ipsum", category: "Text", featured: false, icon: "pilcrow" },
+  { id: "password-strength", title: "Password Strength Checker", description: "Review password length and character variety locally.", href: "/tools/password-strength", category: "Security", featured: false, icon: "shieldcheck" },
+  { id: "random-token", title: "Random Token Generator", description: "Generate secure hexadecimal tokens with browser cryptography.", href: "/tools/random-token", category: "Security", featured: false, icon: "dices" },
+  { id: "age-calculator", title: "Age Calculator", description: "Calculate exact age in years, months, days and total days.", href: "/tools/age-calculator", category: "Calculators", featured: false, icon: "cake" },
+  { id: "bmi-calculator", title: "BMI Calculator", description: "Calculate body mass index from height and weight.", href: "/tools/bmi-calculator", category: "Calculators", featured: false, icon: "activity" },
+  { id: "loan-calculator", title: "Loan Calculator", description: "Estimate monthly payments, total cost and total interest.", href: "/tools/loan-calculator", category: "Calculators", featured: false, icon: "landmark" },
+  { id: "compound-interest", title: "Compound Interest Calculator", description: "Estimate long-term growth with recurring contributions.", href: "/tools/compound-interest", category: "Calculators", featured: false, icon: "trendingup" },
+  { id: "date-difference", title: "Date Difference Calculator", description: "Measure the time between two calendar dates.", href: "/tools/date-difference", category: "Calculators", featured: false, icon: "calendardays" },
+  { id: "unit-converter", title: "Unit Converter", description: "Convert length, weight and temperature units.", href: "/tools/unit-converter", category: "Calculators", featured: false, icon: "arrowleftright" },
+  { id: "color-converter", title: "HEX & RGB Color Converter", description: "Pick a color and convert HEX values to RGB.", href: "/tools/color-converter", category: "Developer", featured: false, icon: "palette" },
+  { id: "pdf-merge", title: "PDF Merge", description: "Combine multiple PDF files in the order you choose.", href: "/tools/pdf-merge", category: "PDF", featured: true, icon: "files" },
+  { id: "pdf-split", title: "PDF Page Extractor", description: "Extract selected pages or ranges into a new PDF.", href: "/tools/pdf-split", category: "PDF", featured: false, icon: "scissors" },
+  { id: "pdf-rotate", title: "Rotate PDF", description: "Rotate every page in a PDF directly in your browser.", href: "/tools/pdf-rotate", category: "PDF", featured: false, icon: "rotatecw" },
+  { id: "images-to-pdf", title: "Images to PDF", description: "Turn JPG and PNG images into a single PDF.", href: "/tools/images-to-pdf", category: "PDF", featured: true, icon: "imageplus" },
+  { id: "gpa-calculator", title: "GPA & Average Calculator", description: "Calculate a weighted average and approximate 4.0 GPA.", href: "/tools/gpa-calculator", category: "Student", featured: true, icon: "graduationcap" },
+  { id: "final-grade-calculator", title: "Final Grade Calculator", description: "Find the score you need on your final exam.", href: "/tools/final-grade-calculator", category: "Student", featured: true, icon: "target" },
+  { id: "grade-calculator", title: "Grade Calculator", description: "Convert points into percentages and a 20-point grade.", href: "/tools/grade-calculator", category: "Student", featured: false, icon: "percent" },
+  { id: "pomodoro-timer", title: "Pomodoro Timer", description: "Run a focused study timer without distractions.", href: "/tools/pomodoro-timer", category: "Productivity", featured: true, icon: "timer" },
+  { id: "flashcards", title: "Flashcard Maker", description: "Create and study flashcards saved on your device.", href: "/tools/flashcards", category: "Student", featured: true, icon: "layers" },
+  { id: "citation-generator", title: "Citation Generator", description: "Build quick APA, MLA and Chicago website citations.", href: "/tools/citation-generator", category: "Student", featured: true, icon: "bookopen" },
+  { id: "image-resizer", title: "Image Resizer", description: "Resize images to exact pixel dimensions.", href: "/tools/image-resizer", category: "Images", featured: false, icon: "image" },
+  { id: "image-converter", title: "Image Converter & Compressor", description: "Convert images to WebP, JPG or PNG and adjust quality.", href: "/tools/image-converter", category: "Images", featured: true, icon: "wand" },
+
+  { id: "discount-calculator", title: "Discount Calculator", description: "Calculate sale prices and savings instantly.", href: "/tools/discount-calculator", category: "Calculators", featured: true, icon: "percent" },
+  { id: "vat-calculator", title: "VAT Calculator", description: "Add or remove VAT from any amount.", href: "/tools/vat-calculator", category: "Calculators", featured: false, icon: "calculator" },
+  { id: "tip-calculator", title: "Tip Calculator", description: "Calculate tips and split bills between people.", href: "/tools/tip-calculator", category: "Calculators", featured: false, icon: "calculator" },
+  { id: "attendance-calculator", title: "Attendance Calculator", description: "Track attendance and calculate classes needed for 75%.", href: "/tools/attendance-calculator", category: "Student", featured: true, icon: "graduationcap" },
+  { id: "reading-time-calculator", title: "Reading Time Calculator", description: "Estimate reading and speaking time from any text.", href: "/tools/reading-time-calculator", category: "Text", featured: false, icon: "clock3" },
+  { id: "text-diff", title: "Text Difference Checker", description: "Compare two texts line by line and spot changes.", href: "/tools/text-diff", category: "Text", featured: true, icon: "arrowleftright" },
+  { id: "random-picker", title: "Random Name Picker", description: "Pick a random name, option or topic from a list.", href: "/tools/random-picker", category: "Productivity", featured: false, icon: "dices" },
+  { id: "checklist-maker", title: "Checklist Maker", description: "Create a clean printable checklist from any list.", href: "/tools/checklist-maker", category: "Productivity", featured: true, icon: "listfilter" },
+  { id: "study-planner", title: "Study Time Planner", description: "Split available study hours across your subjects.", href: "/tools/study-planner", category: "Student", featured: true, icon: "calendardays" },
+  { id: "pace-calculator", title: "Running Pace Calculator", description: "Calculate pace and speed from distance and time.", href: "/tools/pace-calculator", category: "Calculators", featured: false, icon: "activity" },
+  { id: "average-calculator", title: "Average Calculator", description: "Calculate mean, minimum and maximum for a set of numbers.", href: "/tools/average-calculator", category: "Calculators", featured: false, icon: "calculator" },
+  { id: "deadline-countdown", title: "Deadline Countdown", description: "Count the days until an exam, assignment or event.", href: "/tools/deadline-countdown", category: "Student", featured: true, icon: "calendardays" },
+
+  ...extraTools.map((t) => ({ ...t, href: `/tools/${t.id}`, featured: false })),
+];
+
+export const categories = [
+  { slug: "security", title: "Security", description: "Password, hashing and token tools that run locally in your browser." },
+  { slug: "text", title: "Text", description: "Count, clean, generate and transform text quickly." },
+  { slug: "developer", title: "Developer", description: "Utilities for data, code, identifiers, encoding and debugging." },
+  { slug: "calculators", title: "Calculators", description: "Fast calculators for finance, health, dates and everyday conversions." },
+  { slug: "images", title: "Images", description: "Resize, convert, compress and create image-based files." },
+  { slug: "pdf", title: "PDF", description: "Private browser-based PDF tools for merging, extracting, rotating and creating files." },
+  { slug: "student", title: "Student", description: "Grades, citations, flashcards and study helpers for school and university." },
+  { slug: "productivity", title: "Productivity", description: "Simple tools that help you focus and finish work faster." },
+] as const;

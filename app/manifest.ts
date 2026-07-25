@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next";
+export default function manifest(): MetadataRoute.Manifest { return {name:"AllToolkit",short_name:"AllToolkit",description:"Free private browser-based tools for students, PDFs, images, developers and everyday work.",start_url:"/",display:"standalone",background_color:"#FAF7F2",theme_color:"#A7744D",icons:[{src:"/logo.png",sizes:"any",type:"image/png"}]}; }
