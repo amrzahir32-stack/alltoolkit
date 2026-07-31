@@ -1,0 +1,12 @@
+ALLTOOLKIT - FIXED DEVELOPMENT START
+
+1. Open PowerShell in this folder.
+2. Run: npm install
+3. Run: npm run dev
+4. Open: http://localhost:3000
+
+The development command now uses Webpack instead of Turbopack to prevent the /tools/* routes from incorrectly returning 404 during development.
+
+Production commands:
+- npm run build
+- npm start

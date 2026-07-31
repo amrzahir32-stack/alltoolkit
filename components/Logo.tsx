@@ -1,75 +1,41 @@
 import Link from "next/link";
+import type { MouseEventHandler } from "react";
 
 interface LogoProps {
   size?: number;
   showText?: boolean;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export default function Logo({
   size = 46,
   showText = true,
+  onClick,
 }: LogoProps) {
   return (
-    <Link href="/" className="flex items-center gap-3">
-      <div
-        style={{
-          width: size,
-          height: size,
-        }}
-      >
-        <svg
-          viewBox="0 0 100 100"
-          className="h-full w-full drop-shadow-lg"
-        >
+    <Link
+      href="/"
+      onClick={onClick}
+      aria-label="AllToolkit home"
+      className="flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A7744D] focus-visible:ring-offset-2"
+    >
+      <div style={{ width: size, height: size }} aria-hidden="true">
+        <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-lg">
           <defs>
-            <linearGradient
-              id="alltoolkit"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
+            <linearGradient id="alltoolkit" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#D6B48B" />
               <stop offset="100%" stopColor="#A7744D" />
             </linearGradient>
           </defs>
-
-          <rect
-            x="10"
-            y="10"
-            width="80"
-            height="80"
-            rx="22"
-            fill="url(#alltoolkit)"
-          />
-
-          <path
-            d="M35 30H65"
-            stroke="white"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-
-          <path
-            d="M50 30V70"
-            stroke="white"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-
-          <circle
-            cx="50"
-            cy="50"
-            r="8"
-            fill="white"
-          />
+          <rect x="10" y="10" width="80" height="80" rx="22" fill="url(#alltoolkit)" />
+          <path d="M35 30H65" stroke="white" strokeWidth="6" strokeLinecap="round" />
+          <path d="M50 30V70" stroke="white" strokeWidth="6" strokeLinecap="round" />
+          <circle cx="50" cy="50" r="8" fill="white" />
         </svg>
       </div>
 
       {showText && (
-        <span className="text-2xl font-black tracking-tight text-[#2D241C]">
-          AllToolkit
-        </span>
+        <span className="text-2xl font-black tracking-tight text-[#2D241C]">AllToolkit</span>
       )}
     </Link>
   );

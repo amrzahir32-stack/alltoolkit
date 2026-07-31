@@ -4,6 +4,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import RouteTracker from "@/components/shared/RouteTracker";
 import Analytics from "@/components/shared/Analytics";
+import ScrollManager from "@/components/shared/ScrollManager";
 import Script from "next/script";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://alltoolkit.org").replace(/\/$/, "");
@@ -20,11 +21,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: base,
   title: {
-    default: "AllToolkit — 120 Free Online Tools for Everyday Tasks",
+    default: "AllToolkit — Free Online Tools for Everyday Tasks",
     template: "%s | AllToolkit",
   },
   description:
-    "Use 120 free online tools for PDFs, images, studying, writing, development, calculators and everyday productivity. Fast, mobile-friendly and browser-based.",
+    "Free online tools for PDFs, images, studying, writing, development, calculators and everyday productivity. Fast and mobile-friendly.",
   applicationName: "AllToolkit",
   authors: [{ name: "AllToolkit", url: siteUrl }],
   creator: "AllToolkit",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "AllToolkit",
-    title: "AllToolkit — 120 Free Online Tools",
+    title: "AllToolkit — Free Online Tools",
     description: "Fast, private and mobile-friendly tools for everyday work.",
     url: siteUrl,
     locale: "en_US",
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AllToolkit — 120 Free Online Tools",
+    title: "AllToolkit — Free Online Tools",
     description: "Fast, private and mobile-friendly browser tools for everyday work.",
     images: ["/opengraph-image"],
   },
@@ -102,6 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ) : null}
         <Analytics />
         <RouteTracker />
+        <ScrollManager />
         <Navbar />
         {children}
         <Footer />

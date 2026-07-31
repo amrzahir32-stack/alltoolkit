@@ -7,7 +7,7 @@ import { extraTools } from "@/data/extraTools";
 export function generateStaticParams(){ return extraTools.map(t=>({slug:t.id})); }
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params; const tool=extraTools.find(t=>t.id===slug); if(!tool)return {};
- return {title:`${tool.title} – Free Online Tool`,description:tool.description,alternates:{canonical:`/tools/${tool.id}`},openGraph:{title:`${tool.title} | AllToolkit`,description:tool.description,type:"website"}};
+ return {title:tool.title,description:tool.description,alternates:{canonical:`/tools/${tool.id}`},openGraph:{title:`${tool.title} | AllToolkit`,description:tool.description,type:"website"}};
 }
 const icons={text:Text,calculator:Calculator,arrowleftright:ArrowLeftRight,dices:Dices,codexml:CodeXml,graduationcap:GraduationCap,shield:Shield,palette:Palette};
 export default async function ExtraToolPage({params}:{params:Promise<{slug:string}>}){
