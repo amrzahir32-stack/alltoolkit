@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="mx-auto min-h-[65vh] max-w-4xl px-5 py-16 sm:px-6 sm:py-20">
+    <main id="main-content" tabIndex={-1} className="mx-auto min-h-[65vh] max-w-4xl px-5 py-16 sm:px-6 sm:py-20">
       <h1 className="text-4xl font-black text-[#2D241C] sm:text-5xl">Terms of use</h1>
       <p className="mt-3 text-sm text-[#8B7A6C]">Last updated: July 25, 2026</p>
       <div className="mt-8 space-y-6 leading-8 text-[#6B5B4D]">

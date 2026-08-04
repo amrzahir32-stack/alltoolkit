@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 const panel =
   "rounded-3xl border border-[#E7D8C7] bg-[#FFFCF8] p-6 shadow-[0_16px_45px_rgba(91,62,38,.08)] sm:p-8";
@@ -47,9 +47,11 @@ function FilePicker({
   onFile: (file: File | null) => void;
   serverProcessed?: boolean;
 }) {
+  const inputId = useId();
+
   return (
     <>
-      <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#D9C4AE] bg-[#FFF9F2] px-6 text-center transition hover:border-[#A7744D] hover:bg-[#F8EDE1]">
+      <label htmlFor={inputId} className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#D9C4AE] bg-[#FFF9F2] px-6 text-center transition hover:border-[#A7744D] hover:bg-[#F8EDE1]">
         <span className="text-lg font-black text-[#2D241C]">
           {label}
         </span>
@@ -61,7 +63,8 @@ function FilePicker({
         </span>
 
         <input
-          className="hidden"
+          id={inputId}
+          className="sr-only"
           type="file"
           accept={accept}
           onChange={(event) => {
@@ -89,7 +92,7 @@ function Message({
   return (
     <>
       {error && (
-        <p className="mt-4 rounded-2xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+        <p role="alert" aria-live="assertive" className="mt-4 rounded-2xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
           {error}
         </p>
       )}
@@ -126,64 +129,54 @@ async function getResponseError(response: Response) {
   }
 }
 
-async function convertOfficeFileToPdf(file: File) {
+async function requestConversion(file: File, endpoint: string) {
   const formData = new FormData();
   formData.append("file", file);
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 5 * 60 * 1000);
 
-  const response = await fetch(
-    `${CONVERTER_API_URL}/convert/office-to-pdf`,
-    {
+  try {
+    const response = await fetch(`${CONVERTER_API_URL}/convert/${endpoint}`, {
       method: "POST",
       body: formData,
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      throw new Error(await getResponseError(response));
     }
-  );
 
-  if (!response.ok) {
-    throw new Error(await getResponseError(response));
+    const blob = await response.blob();
+    if (!blob.size) {
+      throw new Error("The conversion server returned an empty file.");
+    }
+    if (blob.type.includes("application/json") || blob.type.startsWith("text/")) {
+      throw new Error("The conversion server returned an invalid output file.");
+    }
+    return blob;
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw new Error("The conversion took too long. Try a smaller file or fewer pages.");
+    }
+    throw error;
+  } finally {
+    window.clearTimeout(timer);
   }
+}
 
-  return response.blob();
+async function convertOfficeFileToPdf(file: File) {
+  return requestConversion(file, "office-to-pdf");
 }
 
 async function convertPdfToWord(file: File) {
-  const formData = new FormData();
-  formData.append("file", file);
-
-  const response = await fetch(
-    `${CONVERTER_API_URL}/convert/pdf-to-word`,
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(await getResponseError(response));
-  }
-
-  return response.blob();
+  return requestConversion(file, "pdf-to-word");
 }
 
 async function convertPdfOnServer(
   file: File,
   endpoint: "pdf-to-excel" | "pdf-to-powerpoint"
 ) {
-  const formData = new FormData();
-  formData.append("file", file);
-
-  const response = await fetch(
-    `${CONVERTER_API_URL}/convert/${endpoint}`,
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(await getResponseError(response));
-  }
-
-  return response.blob();
+  return requestConversion(file, endpoint);
 }
 
 

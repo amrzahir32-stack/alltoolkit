@@ -42,7 +42,7 @@ export default function Footer() {
             <h2 className="font-black text-[#2D241C]">Popular tools</h2>
             <div className="mt-4 space-y-3">
               {toolLinks.map(([name, href]) => (
-                <Link key={href} href={href} className="block text-[#6B5B4D] transition hover:text-[#A7744D]">
+                <Link key={href} href={href} className="block rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A7744D] focus-visible:ring-offset-2 text-[#6B5B4D] transition hover:text-[#A7744D]">
                   {name}
                 </Link>
               ))}
@@ -52,10 +52,11 @@ export default function Footer() {
           <div>
             <h2 className="font-black text-[#2D241C]">AllToolkit</h2>
             <div className="mt-4 space-y-3">
-              <Link href="/about" className="block text-[#6B5B4D] transition hover:text-[#A7744D]">About</Link>
-              <Link href="/privacy" className="block text-[#6B5B4D] transition hover:text-[#A7744D]">Privacy</Link>
-              <Link href="/terms" className="block text-[#6B5B4D] transition hover:text-[#A7744D]">Terms</Link>
-              <Link href="/contact" className="block text-[#6B5B4D] transition hover:text-[#A7744D]">Contact & ideas</Link>
+              <Link href="/#categories" className="block text-[#6B5B4D] transition hover:text-[#A7744D] focus-visible:text-[#A7744D]">Categories</Link>
+              <Link href="/about" className="block text-[#6B5B4D] transition hover:text-[#A7744D] focus-visible:text-[#A7744D]">About</Link>
+              <Link href="/privacy" className="block rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A7744D] focus-visible:ring-offset-2 text-[#6B5B4D] transition hover:text-[#A7744D]">Privacy</Link>
+              <Link href="/terms" className="block rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A7744D] focus-visible:ring-offset-2 text-[#6B5B4D] transition hover:text-[#A7744D]">Terms</Link>
+              <Link href="/contact" className="block rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A7744D] focus-visible:ring-offset-2 text-[#6B5B4D] transition hover:text-[#A7744D]">Contact & ideas</Link>
             </div>
           </div>
         </div>

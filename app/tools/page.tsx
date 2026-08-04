@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ToolsPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-7xl px-5 py-16 sm:px-6 sm:py-20">
+    <main id="main-content" tabIndex={-1} className="mx-auto min-h-screen max-w-7xl px-5 py-16 sm:px-6 sm:py-20">
       <div className="mb-12 max-w-3xl">
         <p className="text-sm font-bold uppercase tracking-[.2em] text-[#A7744D]">Tool library</p>
         <h1 className="mt-3 text-4xl font-black tracking-tight text-[#2D241C] sm:text-6xl">Find the right tool fast</h1>

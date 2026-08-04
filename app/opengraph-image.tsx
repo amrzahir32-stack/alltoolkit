@@ -49,12 +49,44 @@ export default function OpenGraphImage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                position: "relative",
                 borderRadius: 22,
-                color: "white",
-                background: "linear-gradient(135deg, #C49A6C, #A7744D)",
+                background: "linear-gradient(135deg, #D6B48B, #A7744D)",
               }}
             >
-              <span>T</span>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 20,
+                  left: 23,
+                  width: 24,
+                  height: 5,
+                  borderRadius: 999,
+                  background: "white",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 20,
+                  left: 32,
+                  width: 6,
+                  height: 32,
+                  borderRadius: 999,
+                  background: "white",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 29,
+                  left: 27,
+                  width: 16,
+                  height: 16,
+                  borderRadius: 999,
+                  background: "white",
+                }}
+              />
             </div>
             <span>AllToolkit</span>
           </div>

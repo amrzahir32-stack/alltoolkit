@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Lightbulb, Menu, X } from "lucide-react";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
 
@@ -18,6 +18,21 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   function handleNavigation(event: MouseEvent<HTMLAnchorElement>, href: string) {
     setOpen(false);
 
@@ -30,13 +45,20 @@ export default function Navbar() {
       return;
     }
 
-    if (pathname === "/" && href === "/#categories") {
+    if (href === "/#categories") {
       event.preventDefault();
-      window.history.replaceState(null, "", "/#categories");
-      document.getElementById("categories")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+
+      if (pathname === "/") {
+        window.history.replaceState(null, "", "/#categories");
+        document.getElementById("categories")?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      } else {
+        // A full navigation guarantees the homepage section exists before
+        // the browser resolves the hash, so this works on the first click.
+        window.location.assign("/#categories");
+      }
       return;
     }
 
@@ -91,6 +113,7 @@ export default function Navbar() {
                 aria-label={open ? "Close navigation" : "Open navigation"}
                 aria-expanded={open}
                 aria-controls="mobile-navigation"
+                aria-haspopup="true"
                 onClick={() => setOpen((value) => !value)}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#E6D8C8] bg-[#FFFCF8] text-[#5F5044] transition hover:bg-[#F5ECE3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A7744D] focus-visible:ring-offset-2 lg:hidden"
               >
