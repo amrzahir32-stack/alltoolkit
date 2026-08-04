@@ -48,6 +48,22 @@ export default function ToolLayout({
     },
   };
 
+  const faqItems = [
+    { question: `Is ${title} free to use?`, answer: `Yes. ${title} is available without an account or subscription.` },
+    { question: `Does ${title} work on mobile devices?`, answer: "Yes. AllToolkit is designed for modern desktop and mobile browsers." },
+    { question: "Is my information private?", answer: currentTool?.category === "PDF" ? "Browser-based tools process files locally when possible. Server converters use the conversion API only for the requested job." : "This tool runs in your browser and does not require an account." },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   const breadcrumbSchema = currentTool
     ? {
         "@context": "https://schema.org",
@@ -63,6 +79,7 @@ export default function ToolLayout({
   return (
     <main id="main-content" tabIndex={-1} className="relative min-h-screen overflow-hidden py-16 sm:py-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(applicationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {breadcrumbSchema ? (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       ) : null}
@@ -98,6 +115,19 @@ export default function ToolLayout({
         <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_TOOL_TOP_SLOT} format="horizontal" />
 
         {children}
+
+        <section className="mt-10 rounded-3xl border border-[#E7D8C7] bg-[#FFFCF8] p-6 sm:p-8" aria-labelledby="tool-faq-heading">
+          <p className="text-xs font-bold uppercase tracking-[.2em] text-[#A7744D]">Helpful answers</p>
+          <h2 id="tool-faq-heading" className="mt-2 text-2xl font-black text-[#2D241C]">Frequently asked questions</h2>
+          <div className="mt-5 divide-y divide-[#E7D8C7]">
+            {faqItems.map((item) => (
+              <details key={item.question} className="group py-4">
+                <summary className="cursor-pointer list-none pr-8 font-bold text-[#3D3026] marker:content-none">{item.question}</summary>
+                <p className="mt-3 max-w-3xl leading-7 text-[#6B5B4D]">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         {relatedTools.length > 0 ? (
           <section className="mt-10 rounded-3xl border border-[#E7D8C7] bg-[#FFFCF8] p-6 sm:p-8" aria-labelledby="related-tools-heading">

@@ -1,0 +1,25 @@
+# AllToolkit
+
+AllToolkit is a free online productivity toolkit at https://alltoolkit.org. It provides browser-based and server-assisted utilities for documents, PDFs, text, images, calculations, studying, productivity, security, and software development.
+
+## Main sections
+- Tool library: https://alltoolkit.org/tools
+- PDF tools: https://alltoolkit.org/categories/pdf
+- Text tools: https://alltoolkit.org/categories/text
+- Developer tools: https://alltoolkit.org/categories/developer
+- Calculators: https://alltoolkit.org/categories/calculators
+- Image tools: https://alltoolkit.org/categories/images
+- Student tools: https://alltoolkit.org/categories/student
+- Productivity tools: https://alltoolkit.org/categories/productivity
+- Security tools: https://alltoolkit.org/categories/security
+
+## Popular tools
+- PDF to Excel: https://alltoolkit.org/tools/pdf-to-excel
+- PDF to Word: https://alltoolkit.org/tools/pdf-to-word
+- Word to PDF: https://alltoolkit.org/tools/word-to-pdf
+- Merge PDF: https://alltoolkit.org/tools/pdf-merge
+- Password Generator: https://alltoolkit.org/tools/password-generator
+- JSON Formatter: https://alltoolkit.org/tools/json-formatter
+- Word Counter: https://alltoolkit.org/tools/word-counter
+
+AllToolkit tools are free to access without creating an account. Many utilities process information locally in the browser.

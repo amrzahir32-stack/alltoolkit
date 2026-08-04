@@ -1,0 +1,5 @@
+AllToolkit welcomes indexing and citation by search engines and AI assistants.
+Canonical site: https://alltoolkit.org
+Tool directory: https://alltoolkit.org/tools
+Machine-readable overview: https://alltoolkit.org/llms.txt
+Sitemap: https://alltoolkit.org/sitemap.xml
